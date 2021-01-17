@@ -5,14 +5,14 @@ j = 0
 current_box_remain_space = k
 remain_boxes = m
 for o in reversed(objects):
-    if o > k:
-        break
-    if remain_boxes == 1 and o > current_box_remain_space:
-        break
-    if o <= current_box_remain_space:
         current_box_remain_space -= o
-    else:
-        remain_boxes -= 1
-        current_box_remain_space = k - o
-    j = j + 1
+        if current_box_remain_space >= 0:
+            j = j+1
+        if current_box_remain_space < 0:
+            remain_boxes -= 1
+            if remain_boxes > 0:
+                current_box_remain_space = k - o
+                j = j + 1
+            else:
+                break
 print(j)
